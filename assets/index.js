@@ -15,19 +15,6 @@ const Manager = require('./lib/Manager');
 
 
 //!current issue is that when we get to the .then(), if there's more than one function, it doesn't wait for any of them to finish
-inquirer.prompt([
-    {
-        type: 'input',
-        message: 'test',
-        name: 'test'
-    }
-
-])
-.then((answer) =>{
-    const manager = createManager();
-       
-
-})
 
 const teamArray = [];
 
@@ -60,6 +47,7 @@ const createManager = () => {
         const {managerName, managerID, managerEmail, managerOffice} = answers;
         const managerPerson = new Manager(managerName, managerID, managerEmail, managerOffice);
         teamArray.push(managerPerson);
+        console.log(managerPerson)
     })
 
 }
@@ -92,6 +80,7 @@ const createEmployee = () => {
         const employeePerson = new Employee(employeeName, employeeID, employeeEmail)
         teamArray.push(employeePerson);
     })
+    .then(askForAnotherEmployee)
 
 }
 
@@ -127,6 +116,7 @@ const createEngineer = () => {
         const engineerPerson = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub)
         teamArray.push(engineerPerson)
     })
+    .then(askForAnotherEmployee)
 
 }
 
@@ -161,51 +151,58 @@ const createIntern = () => {
         const {internName, internID, internEmail, internSchool} = answers;
         const internPerson = new Intern(internName, internID, internEmail, internSchool);
         teamArray.push(internPerson)
+        
     })
+    .then(askForAnotherEmployee)
 
 }
 
-const askForAnotherEmployee = function(){
-    inquirer.prompt([
+const askForAnotherEmployee = () =>{
+    return inquirer.prompt([
         {
             type: 'confirm',
             name: 'choice',
             message: 'Add another employee?'
         }
-        .then((answer) =>{
-            if (answer.choice == true){
-                return true;
-            } else {
-                return false;
-            }
-        })
+
     ])
+    .then((answer) =>{
+        console.log(answer)
+        console.log(answer.choice)
+        if (answer.choice == true){
+            chooseEmployee();
+        } else {
+            return console.log(teamArray);
+        }
+    })
 }
 
 const chooseEmployee = function(){
     let choiceData;
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'list',
             message: 'Please select the employee to add.',
             choices: ['Employee', 'Engineer', 'Intern'],
             name: 'choice'
         }
-        .then((answer) =>{
-            const {choice} = answer;
-            switch (choice){
-                case 'Employee' :
-                    choiceData = createEmployee()
-                    break;
-                case 'Engineer' :
-                    choiceData = createEngineer()
-                    break;
-                case 'Intern' :
-                    choiceData = createIntern()
-                    break;
-            }
-            return choiceData;
-        })
     ])
+    .then((answer) =>{
+        const {choice} = answer;
+        switch (choice){
+            case 'Employee' :
+                choiceData = createEmployee()
+                break;
+            case 'Engineer' :
+                choiceData = createEngineer()
+                break;
+            case 'Intern' :
+                choiceData = createIntern()
+                break;
+        }
+        return choiceData;
+    })
 }
 
+createManager()
+    .then(askForAnotherEmployee)
