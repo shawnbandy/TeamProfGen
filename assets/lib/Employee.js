@@ -7,25 +7,25 @@ class Employee {
 
     constructor(name, id, email, role){
         this.name = name;
-        this.id = id;
+        this.id = Number(id);
         this.email = email;
         this.role = role
     }
 
     getName(){
-        console.log(`Name of this employee is ${this.name}`)
+        return `${this.name}`
     }
 
     getID(){
-        console.log(`ID of this employee is ${this.id}`)
+        return Number(this.id)
     }
 
     getEmail(){
-        console.log(`Email of this employee is ${this.email}`)
+        return `${this.email}`
     }
 
     getRole(){
-        console.log(`Role is ${this.role}`)
+        return `${this.role}`
     }
 
 }

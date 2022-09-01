@@ -13,7 +13,7 @@ class Intern extends Employee {
 
     }
     getSchool(){
-        console.log(`School is ${this.school}`);
+        return `${this.school}`
     }
 }
 
