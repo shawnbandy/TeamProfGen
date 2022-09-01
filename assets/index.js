@@ -3,9 +3,9 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const { default: Choice } = require('inquirer/lib/objects/choice');
 const Employee = require('./lib/Employee');
-// const Intern = require('./lib/Intern');
-// const Engineer = require('./lib/Engineer');
-// const Manager = require('./lib/Manager)
+const Intern = require('./lib/Intern');
+const Engineer = require('./lib/Engineer');
+const Manager = require('./lib/Manager');
 
 // TODO: probably will have to move all this to a separate JS file in the /lib
 // TODO: will have to have a function that's recursive so inquirer is continually called to add people, but then have an option to quit
@@ -25,12 +25,14 @@ inquirer.prompt([
 ])
 .then((answer) =>{
     const manager = createManager();
-    
+       
 
 })
 
+const teamArray = [];
+
 const createManager = () => {
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'input',
             message: 'What is the name of the team manager?',
@@ -56,14 +58,14 @@ const createManager = () => {
     .then((answers) =>{
         console.log(answers);
         const {managerName, managerID, managerEmail, managerOffice} = answers;
-        return {managerName, managerID, managerEmail, managerOffice}
-
+        const managerPerson = new Manager(managerName, managerID, managerEmail, managerOffice);
+        teamArray.push(managerPerson);
     })
 
 }
 
 const createEmployee = () => {
-    inquirer.prompt([
+    return inquirer.prompt([
 
         {
             type: 'input',
@@ -87,13 +89,14 @@ const createEmployee = () => {
     .then((answers) =>{
 
         const {employeeName, employeeID, employeeEmail} = answers;
-        return {employeeName, employeeID, employeeEmail}
+        const employeePerson = new Employee(employeeName, employeeID, employeeEmail)
+        teamArray.push(employeePerson);
     })
 
 }
 
 const createEngineer = () => {
-    inquirer.prompt([
+    return inquirer.prompt([
 
         {
             type: 'input',
@@ -121,13 +124,14 @@ const createEngineer = () => {
     ])
     .then((answers) =>{
         const {engineerName, engineerID, engineerEmail, engineerGithub} = answers;
-        return {engineerName, engineerID, engineerEmail, engineerGithub}
+        const engineerPerson = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub)
+        teamArray.push(engineerPerson)
     })
 
 }
 
 const createIntern = () => {
-    inquirer.prompt([
+    return inquirer.prompt([
 
         {
             type: 'input',
@@ -155,7 +159,8 @@ const createIntern = () => {
     ])
     .then((answers) =>{
         const {internName, internID, internEmail, internSchool} = answers;
-        return {internName, internID, internEmail, internSchool}
+        const internPerson = new Intern(internName, internID, internEmail, internSchool);
+        teamArray.push(internPerson)
     })
 
 }
@@ -204,7 +209,3 @@ const chooseEmployee = function(){
     ])
 }
 
-
-class CreatePerson {
-    constructor(type)
-}
