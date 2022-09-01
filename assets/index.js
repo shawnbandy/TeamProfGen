@@ -1,14 +1,33 @@
+const { create } = require('domain');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const { default: Choice } = require('inquirer/lib/objects/choice');
 const Employee = require('./lib/Employee');
 // const Intern = require('./lib/Intern');
 // const Engineer = require('./lib/Engineer');
+// const Manager = require('./lib/Manager)
 
+// TODO: probably will have to move all this to a separate JS file in the /lib
+// TODO: will have to have a function that's recursive so inquirer is continually called to add people, but then have an option to quit
 // TODO: create a promise function to wait for completion of the prompts
 // TODO: probably should just immediately create the HTML elements, so that way I can append cards to it with the information
+// TODO: and then after making the individual, you can add them to an array and then iterate over the array when you're creating cards
 
-inquirer.prompt([])
+
+//!current issue is that when we get to the .then(), if there's more than one function, it doesn't wait for any of them to finish
+inquirer.prompt([
+    {
+        type: 'input',
+        message: 'test',
+        name: 'test'
+    }
+
+])
+.then((answer) =>{
+    const manager = createManager();
+    
+
+})
 
 const createManager = () => {
     inquirer.prompt([
@@ -139,4 +158,53 @@ const createIntern = () => {
         return {internName, internID, internEmail, internSchool}
     })
 
+}
+
+const askForAnotherEmployee = function(){
+    inquirer.prompt([
+        {
+            type: 'confirm',
+            name: 'choice',
+            message: 'Add another employee?'
+        }
+        .then((answer) =>{
+            if (answer.choice == true){
+                return true;
+            } else {
+                return false;
+            }
+        })
+    ])
+}
+
+const chooseEmployee = function(){
+    let choiceData;
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: 'Please select the employee to add.',
+            choices: ['Employee', 'Engineer', 'Intern'],
+            name: 'choice'
+        }
+        .then((answer) =>{
+            const {choice} = answer;
+            switch (choice){
+                case 'Employee' :
+                    choiceData = createEmployee()
+                    break;
+                case 'Engineer' :
+                    choiceData = createEngineer()
+                    break;
+                case 'Intern' :
+                    choiceData = createIntern()
+                    break;
+            }
+            return choiceData;
+        })
+    ])
+}
+
+
+class CreatePerson {
+    constructor(type)
 }
