@@ -6,15 +6,23 @@ const Employee = require('./lib/Employee');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
+const HTMLgen = require('./lib/HTMLgen');
 
 // // TODO: will have to have a function that's recursive so inquirer is continually called to add people, but then have an option to quit
 // TODO: and then after making the individual, you can add them to an array and then iterate over the array when you're creating cards
 // // TODO: add validation to the inq to make sure the user doesn't break it
 // TODO: make the HTML in another JS file
 
-
+//*team array will store objects. the objects will be the employee information 
 const teamArray = [];
 
+//*this will store the employee information as an HTML card
+const teamHtmlArray = [];
+
+//*creating this so we can use its functions 
+const htmlGen = new HTMLgen();
+
+//*this is the first thing the user gets when they run the application
 const createManager = () => {
     return inquirer.prompt([
         {
@@ -44,9 +52,11 @@ const createManager = () => {
         }
     ])
     .then((answers) =>{
+        //*gets their answers, then makes a new Manager object with those answers
         console.log(answers);
         const {managerName, managerID, managerEmail, managerOffice} = answers;
         const managerPerson = new Manager(managerName, managerID, managerEmail, managerOffice);
+        //*pushes the manager to the array, always will be index 0
         teamArray.push(managerPerson);
         console.log(managerPerson)
     })
@@ -182,7 +192,9 @@ const askForAnotherEmployee = () =>{
         if (answer.choice == true){
             chooseEmployee();
         } else {
-            return console.log(teamArray);
+            for (let i =0; i < teamArray.length; i ++){
+                teamHtmlArray.push(htmlGen.cardGenerator(teamArray[i]))
+            }
         }
     })
 }
@@ -214,5 +226,9 @@ const chooseEmployee = function(){
     })
 }
 
+
+
 createManager()
     .then(askForAnotherEmployee)
+    .then(htmlGen.htmlGenerate(teamHtmlArray))
+

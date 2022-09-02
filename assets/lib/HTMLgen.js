@@ -2,13 +2,14 @@ const fs = require('fs')
 
 // TODO: figure out how to create cards of the HTML, and then put the cards into the HTML
 
-class HTMLGenerator {
+class HTMLGen {
 
     constructor ([teamArray]){
         this.teamArray = teamArray;
     }
 
-    htmlGenerate(){
+    htmlGenerate([array]){
+      this.array = array;
         const baseHTML = 
         `<!DOCTYPE html>
         <html lang="en">
@@ -49,7 +50,7 @@ class HTMLGenerator {
         
                 <main id="mainBody">
                   <section id="employeeSection" class="container col-12">
-        
+                    ${this.array}
                   </section>
                 </main>
         
@@ -143,3 +144,11 @@ class HTMLGenerator {
     }
 
 }
+
+module.exports = HTMLgen;
+
+// let teamHTMLArray = [];
+// for (let i = 0; i < teamArray.length; i++){
+//   teamHTMLArray.push(cardGenerator(teamArray[i]));
+
+// }
