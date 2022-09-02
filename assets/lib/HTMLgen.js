@@ -8,8 +8,14 @@ class HTMLGen {
         this.teamArray = teamArray;
     }
 
-    htmlGenerate([array]){
-      this.array = array;
+    htmlGenerate(array){
+
+      let input = ""
+
+      for (let i = 0; i< array.length; i++){
+        input += array[i];
+      }
+
         const baseHTML = 
         `<!DOCTYPE html>
         <html lang="en">
@@ -50,7 +56,7 @@ class HTMLGen {
         
                 <main id="mainBody">
                   <section id="employeeSection" class="container col-12">
-                    ${this.array}
+                    ${input}
                   </section>
                 </main>
         
@@ -62,9 +68,10 @@ class HTMLGen {
         
         </html>`
 
-        fs.writeFile("index.html", baseHTML, (err) => {
+        fs.writeFile("./dist/result.html", baseHTML, (err) => {
             err ? console.log(err) : console.log("File written successfully")
         })
+
     }
 
     cardGenerator(object){
@@ -81,45 +88,45 @@ class HTMLGen {
                 this.special = object.github
                 card = 
                 `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
-                <div class="card-body text-center">
-                  <h5 class="text-light">Employee Title</h5>
-                  <ul id="cardList" class="list-group">
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
-                  </ul>
-                </div>
+                  <div class="card-body text-center">
+                    <h5 class="text-light">${this.role}</h5>
+                    <ul id="cardList" class="list-group">
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
+                    </ul>
+                  </div>
                 </div>`
                 break;
             case "Manager" :
                 this.special = object.office
                 card = 
                 `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
-                <div class="card-body text-center">
-                  <h5 class="text-light">Employee Title</h5>
-                  <ul id="cardList" class="list-group">
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
-                  </ul>
-                </div>
+                  <div class="card-body text-center">
+                    <h5 class="text-light">${this.role}</h5>
+                    <ul id="cardList" class="list-group">
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
+                    </ul>
+                  </div>
                 </div>`
                 break;
             case "Intern" :
                 this.special = object.school
                 card = 
                 `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
-                <div class="card-body text-center">
-                  <h5 class="text-light">Employee Title</h5>
-                  <ul id="cardList" class="list-group">
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
-                  </ul>
-                </div>
+                  <div class="card-body text-center">
+                    <h5 class="text-light">${this.role}</h5>
+                    <ul id="cardList" class="list-group">
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
+                    </ul>
+                  </div>
                 </div>`
                 break;
             default :
@@ -127,7 +134,7 @@ class HTMLGen {
                 card = 
                 `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
                 <div class="card-body text-center">
-                  <h5 class="text-light">Employee Title</h5>
+                  <h5 class="text-light">Employee</h5>
                   <ul id="cardList" class="list-group">
                     <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
                     <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
@@ -145,10 +152,5 @@ class HTMLGen {
 
 }
 
-module.exports = HTMLgen;
+module.exports = HTMLGen;
 
-// let teamHTMLArray = [];
-// for (let i = 0; i < teamArray.length; i++){
-//   teamHTMLArray.push(cardGenerator(teamArray[i]));
-
-// }

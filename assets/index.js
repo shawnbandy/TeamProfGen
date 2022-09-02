@@ -20,7 +20,7 @@ const teamArray = [];
 const teamHtmlArray = [];
 
 //*creating this so we can use its functions 
-const htmlGen = new HTMLgen();
+
 
 //*this is the first thing the user gets when they run the application
 const createManager = () => {
@@ -58,7 +58,6 @@ const createManager = () => {
         const managerPerson = new Manager(managerName, managerID, managerEmail, managerOffice);
         //*pushes the manager to the array, always will be index 0
         teamArray.push(managerPerson);
-        console.log(managerPerson)
     })
 
 }
@@ -89,13 +88,13 @@ const createEmployee = () => {
 
     ])
     .then((answers) =>{
-
+        //*creates a generic employee and then pushes it to the array
         const {employeeName, employeeID, employeeEmail} = answers;
         const employeePerson = new Employee(employeeName, employeeID, employeeEmail)
         teamArray.push(employeePerson);
     })
     .then(askForAnotherEmployee)
-
+    //*the above will reroute to ask for another employee 
 }
 
 const createEngineer = () => {
@@ -130,6 +129,7 @@ const createEngineer = () => {
 
     ])
     .then((answers) =>{
+        //*creates an engineer and then pushes it to the array
         const {engineerName, engineerID, engineerEmail, engineerGithub} = answers;
         const engineerPerson = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub)
         teamArray.push(engineerPerson)
@@ -170,6 +170,7 @@ const createIntern = () => {
 
     ])
     .then((answers) =>{
+        //*creates an intern and then pushes it to the array
         const {internName, internID, internEmail, internSchool} = answers;
         const internPerson = new Intern(internName, internID, internEmail, internSchool);
         teamArray.push(internPerson)
@@ -180,6 +181,7 @@ const createIntern = () => {
 }
 
 const askForAnotherEmployee = () =>{
+    //*this will prompt for an employee, and if yes, we reroute to the choose employee function
     return inquirer.prompt([
         {
             type: 'confirm',
@@ -192,14 +194,20 @@ const askForAnotherEmployee = () =>{
         if (answer.choice == true){
             chooseEmployee();
         } else {
-            for (let i =0; i < teamArray.length; i ++){
+            console.log(teamArray);
+            console.log("-------------------")
+            const htmlGen = new HTMLgen(teamArray);
+            for (let i = 0; i < teamArray.length; i++){
                 teamHtmlArray.push(htmlGen.cardGenerator(teamArray[i]))
             }
+            console.log(teamHtmlArray)
+            htmlGen.htmlGenerate(teamHtmlArray)
         }
     })
 }
 
-const chooseEmployee = function(){
+const chooseEmployee = () =>{
+    //*asks for the type of employee to add, and then returns the function of that decision
     let choiceData;
     return inquirer.prompt([
         {
@@ -230,5 +238,4 @@ const chooseEmployee = function(){
 
 createManager()
     .then(askForAnotherEmployee)
-    .then(htmlGen.htmlGenerate(teamHtmlArray))
 
