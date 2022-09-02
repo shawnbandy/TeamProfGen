@@ -7,14 +7,10 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 
-// TODO: probably will have to move all this to a separate JS file in the /lib
-// TODO: will have to have a function that's recursive so inquirer is continually called to add people, but then have an option to quit
-// TODO: create a promise function to wait for completion of the prompts
-// TODO: probably should just immediately create the HTML elements, so that way I can append cards to it with the information
+// // TODO: will have to have a function that's recursive so inquirer is continually called to add people, but then have an option to quit
 // TODO: and then after making the individual, you can add them to an array and then iterate over the array when you're creating cards
+// TODO: add validation to the inq to make sure the user doesn't break it
 
-
-//!current issue is that when we get to the .then(), if there's more than one function, it doesn't wait for any of them to finish
 
 const teamArray = [];
 
@@ -23,23 +19,27 @@ const createManager = () => {
         {
             type: 'input',
             message: 'What is the name of the team manager?',
-            name: 'managerName'
+            name: 'managerName',
+            validate: input => { return !input ? "Please enter your name" : true}
         },
     
         {
-            type: 'number',
+            type: 'input',
             message: 'What is the employee ID of the team manager?',
-            name: 'managerID'
+            name: 'managerID',
+            validate: input => { return isNaN(input) ? "Please enter a number" : true; }
         },
         {
             type: 'input',
             message: 'What is the email of the team manager?',
-            name: 'managerEmail'
+            name: 'managerEmail',
+            validate: input => { return !input ? "Please enter your email" : true}
         },
         {
-            type: 'number',
+            type: 'input',
             message: 'What is the office number of the team manager?',
-            name: 'managerOffice'
+            name: 'managerOffice',
+            validate: input => { return isNaN(input) ? "Please enter a number" : true; }
         }
     ])
     .then((answers) =>{
@@ -58,19 +58,22 @@ const createEmployee = () => {
         {
             type: 'input',
             message: 'What is the name of the Employee?',
-            name: 'employeeName'
+            name: 'employeeName',
+            validate: input => { return !input ? "Please enter your name" : true}
         },
     
         {
-            type: 'number',
+            type: 'input',
             message: 'What is their employee ID?',
-            name: 'employeeID'
+            name: 'employeeID',
+            validate: input => { return isNaN(input) ? "Please enter a number" : true; }
         },
 
         {
             type: 'input',
             message: 'What is the email of the employee?',
-            name: 'employeeEmail'
+            name: 'employeeEmail',
+            validate: input => { return !input ? "Please enter your email" : true}
         },
 
     ])
@@ -90,24 +93,28 @@ const createEngineer = () => {
         {
             type: 'input',
             message: 'What is the name of the engineer?',
-            name: 'engineerName'
+            name: 'engineerName',
+            validate: input => { return !input ? "Please enter your name" : true}
         },
     
         {
-            type: 'number',
+            type: 'input',
             message: 'What is their employee ID?',
-            name: 'employeeID'
+            name: 'employeeID',
+            validate: input => { return isNaN(input) ? "Please enter a number" : true; }
         },
 
         {
             type: 'input',
             message: 'What is the email of the engineer?',
-            name: 'engineerEmail'
+            name: 'engineerEmail',
+            validate: input => { return !input ? "Please enter your email" : true}
         },
         {
             type: 'input',
             message: 'What is the Github username of the engineer?',
-            name: 'engineerGithub'
+            name: 'engineerGithub',
+            validate: input => { return !input ? "Please enter your username" : true}
         }
 
     ])
@@ -126,24 +133,28 @@ const createIntern = () => {
         {
             type: 'input',
             message: 'What is the name of the intern?',
-            name: 'internName'
+            name: 'internName',
+            validate: input => { return !input ? "Please enter your name" : true}
         },
     
         {
-            type: 'number',
+            type: 'input',
             message: 'What is their employee ID?',
-            name: 'internID'
+            name: 'internID',
+            validate: input => { return isNaN(input) ? "Please enter a number" : true; }
         },
 
         {
             type: 'input',
             message: 'What is the email of the intern?',
-            name: 'internEmail'
+            name: 'internEmail',
+            validate: input => { return !input ? "Please enter your email" : true}
         },
         {
             type: 'input',
             message: 'What is the school this intern attends?',
-            name: 'internSchool'
+            name: 'internSchool',
+            validate: input => { return !input ? "Please enter your school" : true}
         }
 
     ])
@@ -167,8 +178,6 @@ const askForAnotherEmployee = () =>{
 
     ])
     .then((answer) =>{
-        console.log(answer)
-        console.log(answer.choice)
         if (answer.choice == true){
             chooseEmployee();
         } else {
