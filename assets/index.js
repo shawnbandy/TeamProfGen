@@ -9,7 +9,8 @@ const Manager = require('./lib/Manager');
 
 // // TODO: will have to have a function that's recursive so inquirer is continually called to add people, but then have an option to quit
 // TODO: and then after making the individual, you can add them to an array and then iterate over the array when you're creating cards
-// TODO: add validation to the inq to make sure the user doesn't break it
+// // TODO: add validation to the inq to make sure the user doesn't break it
+// TODO: make the HTML in another JS file
 
 
 const teamArray = [];

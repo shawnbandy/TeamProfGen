@@ -13,7 +13,7 @@ class Manager extends Employee {
 
     }
     getOffice(){
-        return this.office
+        return this.office;
     }
 }
 
