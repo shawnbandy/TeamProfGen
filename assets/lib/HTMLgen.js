@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-// TODO: figure out how to create cards of the HTML, and then put the cards into the HTML
+// TODO: add the <a> to the emails and make it use the mail application, <a> the github
 
 class HTMLGen {
 
@@ -55,7 +55,7 @@ class HTMLGen {
                 </header>
         
                 <main id="mainBody">
-                  <section id="employeeSection" class="container col-12">
+                  <section id="employeeSection" class="container col-12 row justify-content-center">
                     ${input}
                   </section>
                 </main>
@@ -85,7 +85,7 @@ class HTMLGen {
         
         switch (this.role){
             case "Engineer" :
-                this.special = object.github
+                this.special = object.gitHub
                 card = 
                 `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
                   <div class="card-body text-center">
@@ -93,8 +93,8 @@ class HTMLGen {
                     <ul id="cardList" class="list-group">
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
-                      <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
-                      <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: ${this.email}">${this.email}</a></li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="https://github.com/${this.special}">${this.special}</a></li>
                     </ul>
                   </div>
                 </div>`
@@ -108,7 +108,7 @@ class HTMLGen {
                     <ul id="cardList" class="list-group">
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
-                      <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: ${this.email}">${this.email}</a></li>
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
                     </ul>
                   </div>
@@ -123,7 +123,7 @@ class HTMLGen {
                     <ul id="cardList" class="list-group">
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
-                      <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: ${this.email}">${this.email}</a></li>
                       <li class="list-group-item" style="background-color: #92DCE5;">${this.special}</li>
                     </ul>
                   </div>
@@ -138,7 +138,7 @@ class HTMLGen {
                   <ul id="cardList" class="list-group">
                     <li class="list-group-item" style="background-color: #92DCE5;">${this.name}</li>
                     <li class="list-group-item" style="background-color: #92DCE5;">${this.id}</li>
-                    <li class="list-group-item" style="background-color: #92DCE5;">${this.email}</li>
+                    <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: ${this.email}">${this.email}</a></li>
                   </ul>
                 </div>
                 </div>`

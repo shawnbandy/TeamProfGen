@@ -110,8 +110,8 @@ const createEngineer = () => {
         {
             type: 'input',
             message: 'What is their employee ID?',
-            name: 'employeeID',
-            validate: input => { return isNaN(input) ? "Please enter a number" : true; }
+            name: 'engineerID',
+            validate: input => { return isNaN(input) ? "Please enter a number" : true }
         },
 
         {
@@ -194,13 +194,10 @@ const askForAnotherEmployee = () =>{
         if (answer.choice == true){
             chooseEmployee();
         } else {
-            console.log(teamArray);
-            console.log("-------------------")
             const htmlGen = new HTMLgen(teamArray);
             for (let i = 0; i < teamArray.length; i++){
                 teamHtmlArray.push(htmlGen.cardGenerator(teamArray[i]))
             }
-            console.log(teamHtmlArray)
             htmlGen.htmlGenerate(teamHtmlArray)
         }
     })
