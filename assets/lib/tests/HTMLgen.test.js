@@ -1,4 +1,5 @@
 const HTML = require('../HTMLgen');
+const fs = require('fs');
 const Engineer = require('../Engineer');
 const Manager = require('../Manager');
 const Intern = require('../Intern');
@@ -11,15 +12,10 @@ const m = new Manager('name', '1', 'email', '2')
 
 const array = [e, i, em, m];
 
+jest.mock("fs");
+
 
 describe('HTMLGenerator', () =>{
-    describe('Initialization', () =>{
-        it('should intake an array on creation', () =>{
-            const myArray = []
-            const h = new HTML()
-            expect('array' in h).toEqual(true)
-        })
-    })
     describe('Card Generator', () =>{
         it('should intake an engineer object with name, id, email, and role, and give a card with that information', () =>{
             const h = new HTML(array);
@@ -44,52 +40,52 @@ describe('HTMLGenerator', () =>{
 
 //!the cards are pretty large so I'm putting them down here
 const eCard =
-`<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
-  <div class="card-body text-center">
-    <h5 class="text-light">Engineer</h5>
-    <ul id="cardList" class="list-group">
-      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
-      <li class="list-group-item" style="background-color: #92DCE5;">1</li>
-      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">email</a></li>
-      <li class="list-group-item" style="background-color: #92DCE5;"><a href="https://github.com/github">github</a></li>
-    </ul>
-  </div>
-</div>`
+                `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
+                  <div class="card-body text-center">
+                    <h5 class="text-light">Engineer</h5>
+                    <ul id="cardList" class="list-group">
+                      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">ID: 1</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">Email: email</a></li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="https://github.com/github">GitHub: github</a></li>
+                    </ul>
+                  </div>
+                </div>`
 
 const emCard =
-`<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
-  <div class="card-body text-center">
-    <h5 class="text-light">Employee</h5>
-    <ul id="cardList" class="list-group">
-      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
-      <li class="list-group-item" style="background-color: #92DCE5;">1</li>
-      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">email</a></li>
-    </ul>
-  </div>
-</div>`
+                `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
+                  <div class="card-body text-center">
+                    <h5 class="text-light">Employee</h5>
+                    <ul id="cardList" class="list-group">
+                      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">ID: 1</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">Email: email</a></li>
+                    </ul>
+                  </div>
+                </div>`
 
 const iCard =
-`<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
-  <div class="card-body text-center">
-    <h5 class="text-light">Intern</h5>
-    <ul id="cardList" class="list-group">
-      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
-      <li class="list-group-item" style="background-color: #92DCE5;">1</li>
-      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">email</a></li>
-      <li class="list-group-item" style="background-color: #92DCE5;">school</li>
-    </ul>
-  </div>
-</div>`
+                `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
+                  <div class="card-body text-center">
+                    <h5 class="text-light">Intern</h5>
+                    <ul id="cardList" class="list-group">
+                      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">ID: 1</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">Email: email</a></li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">School: school</li>
+                    </ul>
+                  </div>
+                </div>`
 
 const mCard =
-`<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
-  <div class="card-body text-center">
-    <h5 class="text-light">Manager</h5>
-    <ul id="cardList" class="list-group">
-      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
-      <li class="list-group-item" style="background-color: #92DCE5;">1</li>
-      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">email</a></li>
-      <li class="list-group-item" style="background-color: #92DCE5;">2</li>
-    </ul>
-  </div>
-</div>`
+                `<div id="card" class="card col-lg-3 col-sm-6" style="background-color: #7C7C7C;">
+                  <div class="card-body text-center">
+                    <h5 class="text-light">Manager</h5>
+                    <ul id="cardList" class="list-group">
+                      <li class="list-group-item" style="background-color: #92DCE5;">name</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">ID: 1</li>
+                      <li class="list-group-item" style="background-color: #92DCE5;"><a href="mailto: email">Email: email</a></li>
+                      <li class="list-group-item" style="background-color: #92DCE5;">Office: 2</li>
+                    </ul>
+                  </div>
+                </div>`

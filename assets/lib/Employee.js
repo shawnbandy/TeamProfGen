@@ -8,8 +8,8 @@ class Employee {
     constructor(name, id, email, role){
         this.name = name;
         this.id = Number(id);
-        this.email = email;
-        this.role = role
+        this.email = email
+        role == undefined ? this.role = "Employee" : this.role = role
     }
 
     getName(){

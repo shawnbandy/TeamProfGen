@@ -45,4 +45,15 @@
 
     ### Intern
     1. name, id, email, school
-    2. getName(), getId(), getEmail(), getRole(), getSchool(s)
+    2. getName(), getId(), getEmail(), getRole(), getSchool()
+
+
+## Accomplished by
+1. Using inquirer to get input from the user
+2. Using fs to create HTML in the /dist folder upon input completion 
+3. Having a clickable email that defaults you to your default mailing application 
+4. Having a github username redirect to the github user profile
+5/6. User is prompted for team manager first, and then is allowed to add different employees if wanted 
+7. Continual prompting of new members after member completion 
+8. Application uses Inquirer and Jest
+9. Application has the required classes with properties and methods

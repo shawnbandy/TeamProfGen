@@ -9,17 +9,16 @@ const Manager = require('./lib/Manager');
 const HTMLgen = require('./lib/HTMLgen');
 
 // // TODO: will have to have a function that's recursive so inquirer is continually called to add people, but then have an option to quit
-// TODO: and then after making the individual, you can add them to an array and then iterate over the array when you're creating cards
+// // TODO: and then after making the individual, you can add them to an array and then iterate over the array when you're creating cards
 // // TODO: add validation to the inq to make sure the user doesn't break it
-// TODO: make the HTML in another JS file
+// // TODO: make the HTML in another JS file
+// // TODO: make HTML class test
 
 //*team array will store objects. the objects will be the employee information 
 const teamArray = [];
 
 //*this will store the employee information as an HTML card
 const teamHtmlArray = [];
-
-//*creating this so we can use its functions 
 
 
 //*this is the first thing the user gets when they run the application
@@ -53,9 +52,9 @@ const createManager = () => {
     ])
     .then((answers) =>{
         //*gets their answers, then makes a new Manager object with those answers
-        console.log(answers);
         const {managerName, managerID, managerEmail, managerOffice} = answers;
         const managerPerson = new Manager(managerName, managerID, managerEmail, managerOffice);
+        console.log(`Manager email: ${managerPerson.getEmail()}\nManager ID: ${managerPerson.getID()}\nManager office: ${managerPerson.getOffice()}\nManager role: ${managerPerson.getRole()}`)
         //*pushes the manager to the array, always will be index 0
         teamArray.push(managerPerson);
     })
@@ -91,6 +90,7 @@ const createEmployee = () => {
         //*creates a generic employee and then pushes it to the array
         const {employeeName, employeeID, employeeEmail} = answers;
         const employeePerson = new Employee(employeeName, employeeID, employeeEmail)
+        console.log(`Employee email: ${employeePerson.getEmail()}\nEmployee ID: ${employeePerson.getID()}\nEmployee role: ${employeePerson.getRole()}`)
         teamArray.push(employeePerson);
     })
     .then(askForAnotherEmployee)
@@ -132,6 +132,7 @@ const createEngineer = () => {
         //*creates an engineer and then pushes it to the array
         const {engineerName, engineerID, engineerEmail, engineerGithub} = answers;
         const engineerPerson = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub)
+        console.log(`Engineer email: ${engineerPerson.getEmail()}\nEngineer ID: ${engineerPerson.getID()}\nEngineer github: ${engineerPerson.getGitHub()}\nEngineer role: ${engineerPerson.getRole()}`)
         teamArray.push(engineerPerson)
     })
     .then(askForAnotherEmployee)
@@ -173,6 +174,7 @@ const createIntern = () => {
         //*creates an intern and then pushes it to the array
         const {internName, internID, internEmail, internSchool} = answers;
         const internPerson = new Intern(internName, internID, internEmail, internSchool);
+        console.log(`Intern email: ${internPerson.getEmail()}\nIntern ID: ${internPerson.getID()}\nIntern school: ${internPerson.getSchool()}\nIntern role: ${internPerson.getRole()}`)
         teamArray.push(internPerson)
         
     })
@@ -198,7 +200,7 @@ const askForAnotherEmployee = () =>{
             for (let i = 0; i < teamArray.length; i++){
                 teamHtmlArray.push(htmlGen.cardGenerator(teamArray[i]))
             }
-            htmlGen.htmlGenerate(teamHtmlArray)
+            //htmlGen.htmlGenerate(teamHtmlArray)
         }
     })
 }
