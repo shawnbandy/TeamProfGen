@@ -57,3 +57,15 @@
 7. Continual prompting of new members after member completion 
 8. Application uses Inquirer and Jest
 9. Application has the required classes with properties and methods
+
+
+## Application Description
+This application uses node.js, inquirer, and jest to dynamically create a team profile website based on user input. On running the index.js with node.js, the user is prompted for a manager name, email, office number, and ID number with inquirer. These values are used to create a new object using the Manager class, and that object being stored into an array for later use. The user is then prompted to add new members if desired, with options being a generic employee, engineer, or intern, each taking and using inputs from the user to create an object with their respective class. Once the user has added their team and has no more users to add, the objects stored in the array are put into an HTML page outputted in the /dist folder. Each class is tested in a TDD with jest. 
+
+Link to Repo: https://github.com/shawnbandy/TeamProfGen
+
+Video to Application demo:
+
+Image of Application Demo: 
+
+

@@ -200,7 +200,7 @@ const askForAnotherEmployee = () =>{
             for (let i = 0; i < teamArray.length; i++){
                 teamHtmlArray.push(htmlGen.cardGenerator(teamArray[i]))
             }
-            //htmlGen.htmlGenerate(teamHtmlArray)
+            htmlGen.htmlGenerate(teamHtmlArray)
         }
     })
 }
