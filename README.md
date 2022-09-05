@@ -68,7 +68,7 @@ Link to Deployed Page: https://github.com/shawnbandy/TeamProfGen/blob/main/asset
 
 Video to Application demo: https://youtu.be/lKQZ5qEPn4w
 
-Image of Application Demo: ![image](https://user-images.githubusercontent.com/105885313/188448910-fe89f442-7669-435d-93a7-ccf8d89508e0.png)
+Image of Application Demo: ![image](https://user-images.githubusercontent.com/105885313/188448910-fe89f442-7669-435d-93a7-ccf8d89508e0.png)![alttext](image of demo)
 
 
 
