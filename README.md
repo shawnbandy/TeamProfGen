@@ -64,8 +64,11 @@ This application uses node.js, inquirer, and jest to dynamically create a team p
 
 Link to Repo: https://github.com/shawnbandy/TeamProfGen
 
-Video to Application demo:
+Link to Deployed Page: https://github.com/shawnbandy/TeamProfGen/blob/main/assets/dist/result.html
 
-Image of Application Demo: 
+Video to Application demo: https://youtu.be/lKQZ5qEPn4w
+
+Image of Application Demo: ![image](https://user-images.githubusercontent.com/105885313/188448910-fe89f442-7669-435d-93a7-ccf8d89508e0.png)
+
 
 
